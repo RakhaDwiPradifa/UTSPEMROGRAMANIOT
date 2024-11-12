@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Display</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="index-container">
+        <h1>Data Suhu dan Kelembapan</h1>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Suhu Data</h2>
+        <div class="sub-section">
+            <p>Suhu Max: {{ data.suhumax }}</p>
+            <p>Suhu Min: {{ data.suhumin }}</p>
+            <p>Suhu Rata-rata: {{ data.suhurata }}</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Nilai Suhu dan Humidity</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Index</th>
+                    <th>Suhu</th>
+                    <th>Humid</th>
+                    <th>Kecerahan</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in data.nilai_suhu_max_humid_max %}
+                <tr>
+                    <td>{{ entry.idx }}</td>
+                    <td>{{ entry.suhu }}</td>
+                    <td>{{ entry.humid }}</td>
+                    <td>{{ entry.kecerahan }}</td>
+                    <td>{{ entry.timestamp }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2 class="card-title">Month-Year Max</h2>
+        <div class="sub-section">
+            {% for entry in data.month_year_max %}
+            <p class="month-year">Month Year: {{ entry.month_year }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+<footer>
+    <p>&copy; 152022223 Rakha Dwi Pradifa. All rights reserved.</p>
+</footer>
+</html>
